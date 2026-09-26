@@ -6,7 +6,7 @@ namespace AsanRezerve.Host.CompositionTests;
 /// Every browser client deployed against this API must be an allowed CORS origin, or the browser
 /// blocks each call before the API sees it — a failure that looks like "the app is broken" and never
 /// reaches the server logs. The origin list lives in appsettings.json with nothing checking it, which
-/// is how the admin panel at admin.nahalkmi.ir would have been deployed unable to log in (2026-09-19).
+/// is how the admin panel at admin.asanrezerve.ir would have been deployed unable to log in (2026-09-19).
 /// </summary>
 [Collection(HostCompositionCollection.Name)]
 public sealed class CorsOriginsCompositionTests
@@ -19,10 +19,10 @@ public sealed class CorsOriginsCompositionTests
     }
 
     [Theory]
-    [InlineData("https://back.nahalkmi.ir")]      // Vue web app, same origin as the API
-    [InlineData("https://provider.nahalkmi.ir")]  // provider app (Flutter web)
-    [InlineData("https://customer.nahalkmi.ir")]  // customer app (Flutter web)
-    [InlineData("https://admin.nahalkmi.ir")]     // admin panel
+    [InlineData("https://api.asanrezerve.ir")]      // Vue web app, same origin as the API
+    [InlineData("https://provider.asanrezerve.ir")] // provider app (Flutter web)
+    [InlineData("https://customer.asanrezerve.ir")] // customer app (Flutter web)
+    [InlineData("https://admin.asanrezerve.ir")]    // admin panel
     public async Task A_deployed_client_origin_may_call_the_api(string origin)
     {
         var response = await Preflight(origin);

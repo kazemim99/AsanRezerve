@@ -12,7 +12,7 @@ public sealed class UrlService : IUrlService
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     /// <summary>
-    /// The address browsers reach this API at (App:PublicBaseUrl), e.g. https://back.nahalkmi.ir.
+    /// The address browsers reach this API at (App:PublicBaseUrl), e.g. https://api.asanrezerve.ir.
     /// Behind a TLS-terminating proxy the request itself says http://, and image URLs built from it
     /// were blocked by HTTPS pages as mixed content (2026-09-19). Null falls back to the request.
     /// </summary>

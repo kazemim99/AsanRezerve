@@ -11,7 +11,7 @@ export class AdminApiError extends Error {
 }
 
 export function createAdminClient({ baseUrl, token, fetchImpl = globalThis.fetch }) {
-  if (!baseUrl) throw new Error('ASANREZERVE_API_URL is not set (e.g. https://back.nahalkmi.ir/api/v1)')
+  if (!baseUrl) throw new Error('ASANREZERVE_API_URL is not set (e.g. https://api.asanrezerve.ir/api/v1)')
   if (!token) throw new Error('ASANREZERVE_ADMIN_TOKEN is not set (an admin JWT from the admin panel login)')
 
   const root = baseUrl.replace(/\/+$/, '') + '/admin/observability'

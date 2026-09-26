@@ -17,7 +17,7 @@
 # Anonymous, read-only, writes nothing — safe against production.
 # No uploaded photo anywhere in the catalogue skips the upload checks with a notice.
 #
-# USAGE:  BASE=https://back.nahalkmi.ir REQUIRE_HTTPS=1 ORIGIN=https://customer.nahalkmi.ir \
+# USAGE:  BASE=https://api.asanrezerve.ir REQUIRE_HTTPS=1 ORIGIN=https://customer.asanrezerve.ir \
 #           bash tests/e2e/media-url-smoke.sh
 # Pure curl + grep, like review-read-smoke.sh. Exit 0 = pass.
 # =============================================================================

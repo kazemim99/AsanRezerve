@@ -5,7 +5,7 @@
         <language-switcher />
       </template>
       <a-form :model="formData" @finish="handleLogin" layout="vertical">
-        <!-- Email OR a plain username: "kazemi.mst" signs in as kazemi.mst@nahalkmi.ir
+        <!-- Email OR a plain username: "kazemi.mst" signs in as kazemi.mst@asanrezerve.ir
              (utils/login-identifier.ts), so the field no longer insists on an email format. -->
         <a-form-item :label="$t('auth.emailOrUsername')" name="email" :rules="[{ required: true, message: $t('validation.required') }]">
           <a-input v-model:value="formData.email" size="large" placeholder="kazemi.mst" autocomplete="username">

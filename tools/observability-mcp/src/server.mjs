@@ -6,7 +6,7 @@ import { defineTools } from './tools.mjs'
 
 /**
  * AsanRezerve observability over MCP (stdio). Configure with:
- *   ASANREZERVE_API_URL           e.g. https://back.nahalkmi.ir/api/v1
+ *   ASANREZERVE_API_URL           e.g. https://api.asanrezerve.ir/api/v1
  *   ASANREZERVE_ADMIN_TOKEN       an admin JWT (sign in to the admin panel)
  *   ASANREZERVE_MCP_ALLOW_WRITES  "true" to also offer set_log_level, reset_log_level, invalidate_cache
  */

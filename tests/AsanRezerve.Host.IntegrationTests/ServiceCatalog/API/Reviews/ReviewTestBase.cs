@@ -181,7 +181,7 @@ public abstract class ReviewTestBase : ServiceCatalogIntegrationTestBase
     protected void AsAdmin(string role = "Admin") => AuthenticateAs(new TestUser
     {
         UserId = Guid.NewGuid().ToString(),
-        Email = $"{role.ToLowerInvariant()}@nahalkmi.ir",
+        Email = $"{role.ToLowerInvariant()}@asanrezerve.ir",
         Name = role,
         Role = role,
     });

@@ -30,7 +30,7 @@ Environment:
 
 | Variable | Example |
 |---|---|
-| `ASANREZERVE_API_URL` | `https://back.nahalkmi.ir/api/v1` (or `http://localhost:5000/api/v1`) |
+| `ASANREZERVE_API_URL` | `https://api.asanrezerve.ir/api/v1` (or `http://localhost:5000/api/v1`) |
 | `ASANREZERVE_ADMIN_TOKEN` | An admin JWT: sign in to the admin panel, then copy `admin_token` from the browser's local storage. It expires with the session (60 minutes); the server tells you when to renew it. |
 | `ASANREZERVE_MCP_ALLOW_WRITES` | `true` to allow changing log levels and purging the cache. Leave unset for read-only. |
 
@@ -38,7 +38,7 @@ Claude Code (`claude mcp add`):
 
 ```bash
 claude mcp add asanrezerve-observability \
-  -e ASANREZERVE_API_URL=https://back.nahalkmi.ir/api/v1 \
+  -e ASANREZERVE_API_URL=https://api.asanrezerve.ir/api/v1 \
   -e ASANREZERVE_ADMIN_TOKEN=<admin jwt> \
   -- node /absolute/path/to/Booking/tools/observability-mcp/src/server.mjs
 ```

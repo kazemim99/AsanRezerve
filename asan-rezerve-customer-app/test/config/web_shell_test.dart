@@ -187,7 +187,7 @@ void main() {
     });
   });
 
-  group('nginx vhost for customer.nahalkmi.ir', () {
+  group('nginx vhost for customer.asanrezerve.ir', () {
     late String https;
     setUpAll(() {
       final conf = read('../deployment/nginx/asan-rezerve-customer.conf')

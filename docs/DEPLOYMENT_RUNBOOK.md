@@ -132,6 +132,46 @@ alerts, since renaming the string in the config does not rename anything on Slac
 "GitHub Actions Workflows" below) from `booksy` to `asan-rezerve` to match — it was deliberately
 left describing the *current, pre-migration* reality so the commands in it keep working until then.
 
+## ⚠️ Pending: domain cutover to asanrezerve.ir (as of 2026-09-26)
+
+The repo now targets the new domain everywhere it's the source of truth for a deployment: the
+Host's `Cors:AllowedOrigins`, all four `deployment/nginx/*.conf` vhosts, `docker-compose.prod.yml`'s
+`PUBLIC_BASE_URL` default, `.github/workflows/deploy.yml`'s build/health-check URLs, the admin
+app's `.env.production`, and its `ADMIN_EMAIL_DOMAIN` (see below). **The live server has not been
+cut over** — it still answers on `back./provider./customer./admin.nahalkmi.ir`, same as the
+server-rename above, and for the same reason: this document is deliberately left describing the
+*current, pre-cutover* reality below so its commands keep working until a human runs the sequence
+here.
+
+Mapping: `back.nahalkmi.ir` → `api.asanrezerve.ir` (only prefix that changed); `provider.`,
+`customer.`, `admin.` keep their names.
+
+**Cutover order (run once, on the box, as root unless noted):**
+
+1. **DNS first.** Add A records for `asanrezerve.ir`, `api.`, `provider.`, `customer.`, `admin.` →
+   `194.1.155.230`. Confirm propagation (`dig +short api.asanrezerve.ir`) before touching nginx —
+   certbot's HTTP-01 challenge needs the new name resolving here already.
+2. **New certs, one per subdomain**, same as the existing per-domain convention (`docs` above:
+   "TLS certs are per-domain \[...\], not per-app-name"): `certbot certonly --nginx -d
+   api.asanrezerve.ir` (repeat for the other three). Do this *before* swapping `server_name` in the
+   four `deployment/nginx/*.conf` files below, or nginx fails to reload for lack of the cert files
+   the new config already points at.
+3. **Admin login, before deploying the admin build**: update the real admin user's email in the
+   production database from `kazemi.mst@nahalkmi.ir` to `kazemi.mst@asanrezerve.ir` — the frontend's
+   `ADMIN_EMAIL_DOMAIN` (`asan-rezerve-admin/src/utils/login-identifier.ts`) already expects the new
+   one, so deploying that build first (or without this step) breaks the username-shorthand login
+   until the DB row matches.
+4. **Deploy** the four `deployment/nginx/*.conf` files (now `*.asanrezerve.ir`) and `test` before
+   `reload` (`nginx -t`), then redeploy each app per its section below — the CI workflow now bakes
+   in the new API URL, so a fresh build/deploy is what actually switches the client apps over.
+5. **Keep the old vhosts/certs for a grace period** (a few days) rather than deleting them
+   immediately, in case a client still has the old domain cached (bookmarks, PWA install, mobile
+   app builds not yet updated) — same caution as step 8 of the rename above.
+
+**Once cutover is verified**, update this document's "Current production state" section and
+everything under "Architecture" / "Common Commands" / "GitHub Actions Workflows" from
+`nahalkmi.ir` to `asanrezerve.ir` to match.
+
 ## Current production state (as of 2026-09-18)
 
 **Live and verified end to end** (health 200, API 200, CORS preflight 204, sandbox OTP login issued a token):

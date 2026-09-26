@@ -19,7 +19,7 @@ namespace AsanRezerve.ServiceCatalog.Infrastructure.Services.Geocoding;
 public sealed class NominatimGeocodingProvider : IGeocodingProvider
 {
     /// <summary>Identifies this deployment to Nominatim, as its usage policy requires.</summary>
-    public const string UserAgent = "AsanRezerveProvider/1.0 (+https://provider.nahalkmi.ir)";
+    public const string UserAgent = "AsanRezerveProvider/1.0 (+https://provider.asanrezerve.ir)";
 
     private static readonly TimeSpan CacheFor = TimeSpan.FromHours(24);
 

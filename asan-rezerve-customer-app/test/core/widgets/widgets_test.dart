@@ -490,7 +490,7 @@ void main() {
     testWidgets(
         'on the web, a photo the browser will not hand over by CORS still '
         'shows, as an HTML image (salon-images-load, G7)', (tester) async {
-      // Photos are cached "public" and every *.nahalkmi.ir app shares one
+      // Photos are cached "public" and every *.asanrezerve.ir app shares one
       // browser cache: a copy an <img> fetched on the admin or Vue site
       // carries no CORS header, and Flutter's CORS fetch of it fails — the
       // salon showed the placeholder instead of its photo.
@@ -498,7 +498,7 @@ void main() {
       addTearDown(() => ProviderImage.debugIsWebOverride = null);
 
       await tester.pumpWidget(_wrap(const ProviderImage(
-        imageUrl: 'https://back.nahalkmi.ir/uploads/providers/p/a_medium.webp',
+        imageUrl: 'https://api.asanrezerve.ir/uploads/providers/p/a_medium.webp',
         width: 96,
         height: 96,
       )));

@@ -12,7 +12,7 @@ void main() {
       // Plain `flutter test`: a local development default (localhost, or the
       // Android emulator's host alias), never a production URL.
       expect(ApiConstants.baseUrl, anyOf(contains('localhost'), contains('10.0.2.2')));
-      expect(ApiConstants.baseUrl, isNot(contains('nahalkmi')));
+      expect(ApiConstants.baseUrl, isNot(contains('asanrezerve.ir')));
     } else {
       expect(ApiConstants.baseUrl, override);
     }

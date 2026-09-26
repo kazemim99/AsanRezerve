@@ -13,7 +13,7 @@ analyzer:
   exclude:
     # Retrofit/json_serializable output. We do not edit it, so its warnings
     # (unused generated parameters) are noise that fails `flutter analyze` — and
-    # with it the CI job that builds this app for customer.nahalkmi.ir.
+    # with it the CI job that builds this app for customer.asanrezerve.ir.
     - "**/*.g.dart"
     - "**/*.freezed.dart"
 

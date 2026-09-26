@@ -703,7 +703,7 @@ void main() {
     testWidgets(
         'a photo the browser will not hand over by CORS still shows, as an '
         'HTML image (salon-images-load, G7)', (tester) async {
-      // Photos are cached "public" and every *.nahalkmi.ir app shares one
+      // Photos are cached "public" and every *.asanrezerve.ir app shares one
       // browser cache: a copy an <img> fetched elsewhere carries no CORS
       // header, and Flutter's CORS fetch of it fails. Falling back to an
       // HTML image shows it anyway. (No effect off the web.)

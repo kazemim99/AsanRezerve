@@ -50,7 +50,7 @@ class ProviderImage extends StatelessWidget {
                   loadingBuilder: (context, child, progress) =>
                       progress == null ? child : _loading(),
                   errorBuilder: (_, __, ___) => _placeholder(context),
-                  // Photos are cached "public" and every *.nahalkmi.ir app
+                  // Photos are cached "public" and every *.asanrezerve.ir app
                   // shares one browser cache, so a copy an <img> fetched on
                   // the admin or Vue site (no CORS header) can fail Flutter's
                   // CORS fetch; an HTML image still shows it

@@ -14,7 +14,7 @@
 # Anonymous, read-only, writes nothing — safe against production.
 # An empty catalogue skips the review read with a notice rather than failing.
 #
-# USAGE:  BASE=https://back.nahalkmi.ir bash tests/e2e/review-read-smoke.sh
+# USAGE:  BASE=https://api.asanrezerve.ir bash tests/e2e/review-read-smoke.sh
 # Pure curl + grep, like keystone-booking-flow.sh. Exit 0 = pass.
 # =============================================================================
 set -euo pipefail

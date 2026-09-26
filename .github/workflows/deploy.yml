@@ -368,7 +368,7 @@ jobs:
         FIREBASE_WEB_PROJECT_ID: ${{ vars.FIREBASE_WEB_PROJECT_ID || secrets.FIREBASE_WEB_PROJECT_ID || 'booksy-f324d' }}
         FIREBASE_WEB_VAPID_KEY: ${{ vars.FIREBASE_WEB_VAPID_KEY || secrets.FIREBASE_WEB_VAPID_KEY || 'BFdpY78ryoVxS149hJl2KSBAwKiRTC30WqycMvWjTEPANi5AY2NC6dgoYkV7vPCkxkVGJcUUUJpXhlQPLrK6lX8' }}
       run: |
-        flutter build web --release --dart-define=API_BASE_URL=https://back.nahalkmi.ir \
+        flutter build web --release --dart-define=API_BASE_URL=https://api.asanrezerve.ir \
           --dart-define=FIREBASE_WEB_API_KEY="$FIREBASE_WEB_API_KEY" \
           --dart-define=FIREBASE_WEB_APP_ID="$FIREBASE_WEB_APP_ID" \
           --dart-define=FIREBASE_WEB_MESSAGING_SENDER_ID="$FIREBASE_WEB_MESSAGING_SENDER_ID" \
@@ -394,7 +394,7 @@ jobs:
       # Without the --dart-define the bundle silently points at http://localhost:5000
       # (lib/core/api/config/api_constants.dart) and every request fails in the browser.
       run: |
-        grep -q 'back.nahalkmi.ir' build/web/main.dart.js
+        grep -q 'api.asanrezerve.ir' build/web/main.dart.js
         ! grep -q 'localhost:5000' build/web/main.dart.js
 
     - name: Give the entry file a content-hashed name
@@ -411,7 +411,7 @@ jobs:
         retention-days: 7
 
   # Customer app (Flutter web), served by host nginx from /var/www/asan-rezerve-customer
-  # on customer.nahalkmi.ir.
+  # on customer.asanrezerve.ir.
   build-customer-web:
     name: Build Customer App (web)
     runs-on: ubuntu-latest
@@ -457,7 +457,7 @@ jobs:
         FIREBASE_WEB_PROJECT_ID: ${{ vars.FIREBASE_WEB_PROJECT_ID || secrets.FIREBASE_WEB_PROJECT_ID || 'booksy-f324d' }}
         FIREBASE_WEB_VAPID_KEY: ${{ vars.FIREBASE_WEB_VAPID_KEY || secrets.FIREBASE_WEB_VAPID_KEY || 'BFdpY78ryoVxS149hJl2KSBAwKiRTC30WqycMvWjTEPANi5AY2NC6dgoYkV7vPCkxkVGJcUUUJpXhlQPLrK6lX8' }}
       run: |
-        flutter build web --release --dart-define=API_BASE_URL=https://back.nahalkmi.ir \
+        flutter build web --release --dart-define=API_BASE_URL=https://api.asanrezerve.ir \
           --dart-define=FIREBASE_WEB_API_KEY="$FIREBASE_WEB_API_KEY" \
           --dart-define=FIREBASE_WEB_APP_ID="$FIREBASE_WEB_APP_ID" \
           --dart-define=FIREBASE_WEB_MESSAGING_SENDER_ID="$FIREBASE_WEB_MESSAGING_SENDER_ID" \
@@ -483,7 +483,7 @@ jobs:
       # Without the --dart-define the bundle silently points at http://localhost:5000
       # (lib/core/api/config/api_constants.dart) and every request fails in the browser.
       run: |
-        grep -q 'back.nahalkmi.ir' build/web/main.dart.js
+        grep -q 'api.asanrezerve.ir' build/web/main.dart.js
         ! grep -q 'localhost:5000' build/web/main.dart.js
 
     - name: Give the entry file a content-hashed name
@@ -500,7 +500,7 @@ jobs:
         path: asan-rezerve-customer-app/build/web
         retention-days: 7
 
-  # Admin panel (Vue), served by host nginx from /var/www/asan-rezerve-admin on admin.nahalkmi.ir.
+  # Admin panel (Vue), served by host nginx from /var/www/asan-rezerve-admin on admin.asanrezerve.ir.
   build-admin-web:
     name: Build Admin Panel (web)
     runs-on: ubuntu-latest
@@ -527,12 +527,12 @@ jobs:
 
     - name: Build
       env:
-        VITE_API_BASE_URL: https://back.nahalkmi.ir/api/v1
+        VITE_API_BASE_URL: https://api.asanrezerve.ir/api/v1
       run: npm run build
 
     - name: Verify the production API URL was compiled in
       run: |
-        grep -rq 'back.nahalkmi.ir' dist/assets
+        grep -rq 'api.asanrezerve.ir' dist/assets
         ! grep -rq 'localhost:5000' dist/assets
         test -f dist/index.html
 
@@ -571,7 +571,7 @@ jobs:
       cancel-in-progress: false
     environment:
       name: production
-      url: https://back.nahalkmi.ir
+      url: https://api.asanrezerve.ir
     env:
       DEPLOY_PATH: /opt/booksy
       PROVIDER_WEB_ROOT: /var/www/booksy-provider
@@ -709,16 +709,16 @@ jobs:
           done
           echo "::error::$1 returned $code"; return 1
         }
-        check https://back.nahalkmi.ir/health
-        check https://provider.nahalkmi.ir/
-        check https://customer.nahalkmi.ir/
-        check https://admin.nahalkmi.ir/
+        check https://api.asanrezerve.ir/health
+        check https://provider.asanrezerve.ir/
+        check https://customer.asanrezerve.ir/
+        check https://admin.asanrezerve.ir/
 
     - name: Review read smoke (public)
       # /health cannot see a broken review read (a half-applied review migration answers 500 on
       # the listing while /health stays 200). Anonymous and read-only. The script is sparse-
       # checked-out alongside the compose file.
-      run: BASE=https://back.nahalkmi.ir bash tests/e2e/review-read-smoke.sh
+      run: BASE=https://api.asanrezerve.ir bash tests/e2e/review-read-smoke.sh
 
     - name: Media URL smoke (public)
       # Every check above was green on 2026-09-22 while no salon photo loaded: the API sent them as
@@ -726,7 +726,7 @@ jobs:
       # asserts photo URLs are absolute https, and that an upload is an image carrying the CORS
       # header and Vary: Origin (openspec/changes/_inline/salon-images-load). Anonymous, read-only.
       run: >-
-        BASE=https://back.nahalkmi.ir REQUIRE_HTTPS=1 ORIGIN=https://customer.nahalkmi.ir
+        BASE=https://api.asanrezerve.ir REQUIRE_HTTPS=1 ORIGIN=https://customer.asanrezerve.ir
         bash tests/e2e/media-url-smoke.sh
 
     - name: Remove dangling images

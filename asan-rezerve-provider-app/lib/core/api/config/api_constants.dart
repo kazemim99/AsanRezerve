@@ -7,7 +7,7 @@ class ApiConstants {
   ApiConstants._();
 
   /// Build-time override, e.g. a web/release build against the deployed API:
-  ///   flutter build web --dart-define=API_BASE_URL=https://back.nahalkmi.ir
+  ///   flutter build web --dart-define=API_BASE_URL=https://api.asanrezerve.ir
   /// Empty (the default) keeps the local-development behaviour below untouched,
   /// so nothing changes for anyone running the app against a local host.
   static const String _apiBaseUrlOverride = String.fromEnvironment(

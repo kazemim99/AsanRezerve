@@ -6,7 +6,7 @@ import { toLoginEmail } from '../login-identifier'
 // email on the product domain (decision 2026-09-19); a full email passes through.
 describe('toLoginEmail', () => {
   it('turns a bare username into the account email', () => {
-    expect(toLoginEmail('kazemi.mst')).toBe('kazemi.mst@nahalkmi.ir')
+    expect(toLoginEmail('kazemi.mst')).toBe('kazemi.mst@asanrezerve.ir')
   })
 
   it('leaves a full email untouched', () => {
@@ -14,7 +14,7 @@ describe('toLoginEmail', () => {
   })
 
   it('ignores surrounding spaces and letter case, as mobile keyboards add them', () => {
-    expect(toLoginEmail('  Kazemi.MST ')).toBe('kazemi.mst@nahalkmi.ir')
+    expect(toLoginEmail('  Kazemi.MST ')).toBe('kazemi.mst@asanrezerve.ir')
   })
 
   it('leaves an empty value empty, so "required" validation still fires', () => {

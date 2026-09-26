@@ -85,7 +85,7 @@ public class GalleryManagementTests : ServiceCatalogIntegrationTestBase
     [Fact]
     public async Task An_uploaded_photo_is_cached_per_origin_even_when_fetched_without_one()
     {
-        // Photos are served "public, max-age=30 days" and every *.nahalkmi.ir app shares one browser cache. A plain
+        // Photos are served "public, max-age=30 days" and every *.asanrezerve.ir app shares one browser cache. A plain
         // <img> (admin, Vue site) sends no Origin, so the copy it caches has no CORS header — and without
         // "Vary: Origin" the Flutter apps' CORS fetch of the same URL is answered from that copy and fails
         // (salon-images-load, G7). ASP.NET's CORS adds Vary only when the request carries an Origin.
@@ -101,7 +101,7 @@ public class GalleryManagementTests : ServiceCatalogIntegrationTestBase
         plain.Headers.Vary.Should().Contain("Origin");
 
         using var cors = new HttpRequestMessage(HttpMethod.Get, path);
-        cors.Headers.Add("Origin", "https://customer.nahalkmi.ir");
+        cors.Headers.Add("Origin", "https://customer.asanrezerve.ir");
         var withOrigin = await Client.SendAsync(cors);
         withOrigin.StatusCode.Should().Be(HttpStatusCode.OK);
         withOrigin.Headers.Vary.Should().Contain("Origin");

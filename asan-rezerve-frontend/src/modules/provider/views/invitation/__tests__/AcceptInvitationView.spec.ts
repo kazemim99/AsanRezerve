@@ -55,7 +55,7 @@ beforeEach(() => {
 
 describe('AcceptInvitationView', () => {
   it("shows the salon's photo, not its name, as the image", async () => {
-    const photo = 'https://back.nahalkmi.ir/uploads/providers/p/gallery/a_medium.webp'
+    const photo = 'https://api.asanrezerve.ir/uploads/providers/p/gallery/a_medium.webp'
     getInvitation.mockResolvedValue({ ...summary, organizationLogo: photo })
 
     const wrapper = await mountView()

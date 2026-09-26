@@ -22,7 +22,7 @@ public class AdminRoleNameTests : ServiceCatalogIntegrationTestBase
     private void AuthenticateAsProductionAdmin() => AuthenticateAs(new TestUser
     {
         UserId = Guid.NewGuid().ToString(),
-        Email = "kazemi.mst@nahalkmi.ir",
+        Email = "kazemi.mst@asanrezerve.ir",
         Name = "kazemi.mst",
         Role = "Admin",
     });

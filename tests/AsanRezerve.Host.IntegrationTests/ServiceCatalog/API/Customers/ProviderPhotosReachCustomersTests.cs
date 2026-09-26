@@ -32,8 +32,8 @@ public class ProviderPhotosReachCustomersTests : ServiceCatalogIntegrationTestBa
     [Fact]
     public async Task The_photo_the_salon_chose_is_what_a_customer_sees_on_its_card()
     {
-        const string primary = "https://back.nahalkmi.ir/uploads/providers/x/gallery/chosen_medium.webp";
-        const string other = "https://back.nahalkmi.ir/uploads/providers/x/gallery/other_medium.webp";
+        const string primary = "https://api.asanrezerve.ir/uploads/providers/x/gallery/chosen_medium.webp";
+        const string other = "https://api.asanrezerve.ir/uploads/providers/x/gallery/other_medium.webp";
         var providerId = await WithGalleryAsync(primary, other);
 
         var search = await Client.GetAsync("/api/v1/providers/search?pageSize=50");
@@ -47,8 +47,8 @@ public class ProviderPhotosReachCustomersTests : ServiceCatalogIntegrationTestBa
     [Fact]
     public async Task The_profile_carries_every_photo_so_they_can_be_paged_through()
     {
-        const string primary = "https://back.nahalkmi.ir/uploads/providers/y/gallery/chosen_medium.webp";
-        const string other = "https://back.nahalkmi.ir/uploads/providers/y/gallery/other_medium.webp";
+        const string primary = "https://api.asanrezerve.ir/uploads/providers/y/gallery/chosen_medium.webp";
+        const string other = "https://api.asanrezerve.ir/uploads/providers/y/gallery/other_medium.webp";
         var providerId = await WithGalleryAsync(primary, other);
 
         var detail = await Client.GetAsync($"/api/v1/providers/{providerId}");

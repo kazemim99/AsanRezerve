@@ -19,7 +19,7 @@ services:
       - Seq__ServerUrl=${SEQ_SERVER_URL:-}
       # The address browsers reach the API at. TLS ends in the host nginx, so the API itself only
       # ever sees http:// requests; image URLs built from those were blocked by HTTPS pages.
-      - App__PublicBaseUrl=${PUBLIC_BASE_URL:-https://back.nahalkmi.ir}
+      - App__PublicBaseUrl=${PUBLIC_BASE_URL:-https://api.asanrezerve.ir}
       # Demo reviews for سالن نهال by named test customers (openspec/changes/_inline/customer-reviews-and-nahal-seed).
       # ON while the platform is in its test stage; idempotent (it skips a salon that already has them). Set
       # SEED_DEMO_REVIEWS=false in .env before real customers arrive — they would read these as genuine.
